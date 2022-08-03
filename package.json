@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/harold-barron/Task-Manager/issues"
   },
-  "homepage": "https://github.com/harold-barron/Task-Manager#readme"
+  "homepage": "https://github.com/harold-barron/Task-Manager#readme",
+  "dependencies": {
+    "mongodb": "^4.8.1"
+  }
 }
