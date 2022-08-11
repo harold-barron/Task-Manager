@@ -18,6 +18,10 @@
   "homepage": "https://github.com/harold-barron/Task-Manager#readme",
   "dependencies": {
     "mongodb": "^4.8.1",
-    "mongoose": "^6.5.1"
+    "mongoose": "^6.5.1",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
