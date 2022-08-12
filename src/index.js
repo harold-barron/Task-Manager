@@ -24,10 +24,10 @@ app.post('/users',(req,res)=>{
 })
 
 app.post("/task",(req,res)=>{
-    const Task = new Task(req.body)
+    const task = new Task(req.body)
 
-    Task.save().then(()=>{
-        res.send(Task)
+    task.save().then(()=>{
+        res.send(task)
     }).catch((error)=>{
         res.status(400).send(error)
     })
