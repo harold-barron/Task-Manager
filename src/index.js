@@ -67,6 +67,20 @@ app.get("/task",(req,res)=>{
 
 })
 
+app.get("/task/:id",(req,res) =>{ 
+
+    const taskId = req.params.id
+    
+    Task.findById(taskId).then((task)=>{
+        if(!task){
+            return res.status(404).send("Task id not found")
+        }
+
+        res.send(task)
+    }).catch((error)=>{
+        res.status(500).send(error)
+    })
+})
 
 
 app.listen(port, ( )=>
