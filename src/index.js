@@ -33,6 +33,15 @@ app.post("/task",(req,res)=>{
     })
 })
 
+app.get("/users",(req,res) =>{
+
+    User.find({}).then((users) =>{
+        res.send(users)
+    }).catch((error )=>{
+        res.status(500).send(error)
+    })
+})
+
 
 app.listen(port, ( )=>
 {
