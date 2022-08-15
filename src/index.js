@@ -57,6 +57,18 @@ app.get("/users/:id",(req,res)=>{
 
 })
 
+app.get("/task",(req,res)=>{
+
+    Task.find({}).then((tasks) =>{
+        res.send(tasks)
+    }).catch((error)=>{
+        res.status(500).send(error)
+    })
+
+})
+
+
+
 app.listen(port, ( )=>
 {
     console.log('Server is up on: ', port)
