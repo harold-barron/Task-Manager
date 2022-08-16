@@ -36,57 +36,57 @@ app.post("/task",async (req,res)=>{
 })
 
 app.get("/users",async (req,res) =>{
-  
-    
-
     try{
         const users = await User.find({})
         res.send(users)
     } catch(error){
         res.status(500).send(error)
     }
-
-   
 })
 
-app.get("/users/:id",(req,res)=>{
+app.get("/users/:id", async (req,res)=>{
 
     const _id= req.params.id
 
-    User.findById(_id).then((user)=>{
-        if(!user){
-           return res.status(404).send()
+    try{
+        const user = await User.findById(_id)
+        if (!user)
+        {
+            return res.status(404).send()
         }
-        res.send(user)
-    }).catch((error)=>{
-        res.status(500).send(error)
-    })
+        res.send(user)        
+    } catch(error){
+        res.status(500).send()
+    }
 
 })
 
-app.get("/task",(req,res)=>{
+app.get("/task", async(req,res)=>{
 
-    Task.find({}).then((tasks) =>{
+    try {
+        const tasks = await Task.find({})
         res.send(tasks)
-    }).catch((error)=>{
-        res.status(500).send(error)
-    })
+    } catch(error){
+        res.status(500).send()
+    }
+    
 
 })
 
-app.get("/task/:id",(req,res) =>{ 
+app.get("/task/:id", async (req,res) =>{ 
 
     const taskId = req.params.id
     
-    Task.findById(taskId).then((task)=>{
+    try{
+        const task = await Task.findById(taskId)
         if(!task){
             return res.status(404).send("Task id not found")
         }
-
         res.send(task)
-    }).catch((error)=>{
+    } catch(error){
         res.status(500).send(error)
-    })
+    }
+
 })
 
 
