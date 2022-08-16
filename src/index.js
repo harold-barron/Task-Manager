@@ -149,6 +149,20 @@ app.patch('/task/:id', async(req,res) =>{
 })
 
 
+app.delete('/task/:id', async (req,res)=>{
+    try{
+        const taskId = await Task.findByIdAndDelete(req.params.id)
+
+        if(!taskId){
+            return res.status(404).send()
+        }
+
+        res.send(taskId)
+    }catch(error){
+        res.status(500).send()
+    }
+})
+
 app.listen(port, ( )=>
 {
     console.log('Server is up on: ', port)
