@@ -22,23 +22,31 @@ app.post('/users',async (req,res)=>{
     
 })
 
-app.post("/task",(req,res)=>{
+app.post("/task",async (req,res)=>{
     const task = new Task(req.body)
 
-    task.save().then(()=>{
+
+    try{
+        await task.save()
         res.send(task)
-    }).catch((error)=>{
+    } catch(error){
         res.status(400).send(error)
-    })
+    }
+    
 })
 
-app.get("/users",(req,res) =>{
+app.get("/users",async (req,res) =>{
+  
+    
 
-    User.find({}).then((users) =>{
+    try{
+        const users = await User.find({})
         res.send(users)
-    }).catch((error )=>{
+    } catch(error){
         res.status(500).send(error)
-    })
+    }
+
+   
 })
 
 app.get("/users/:id",(req,res)=>{
