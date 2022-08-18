@@ -15,11 +15,11 @@ const port = process.env.PORT || 3000
 //     }
 // })
 
-app.use((req,res,next) =>{
+// app.use((req,res,next) =>{
     
-    res.status(503).send("Server in maintenance")
+//     res.status(503).send("Server in maintenance")
     
-})
+// })
 
 const userRouter = require('../src/router/userRouter')
 const taskRouter = require('../src/router/taskRouter')
