@@ -21,3 +21,9 @@ app.listen(port, ( )=>
     console.log('Server is up on: ', port)
 })
 
+
+const multer  = require('multer')
+
+const upload = multer ({
+    dest: 'images'
+})
