@@ -1,5 +1,6 @@
-const { MongoTopologyClosedError } = require('mongodb')
+// const { MongoTopologyClosedError } = require('mongodb')
 const mongoose = require('mongoose')
+
 
 const taskSchema = new mongoose.Schema({
     description: {
@@ -7,7 +8,7 @@ const taskSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    completed_field:{
+    completed:{
         type: Boolean,
         default: false
     },

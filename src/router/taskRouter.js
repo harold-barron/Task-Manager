@@ -19,11 +19,12 @@ routerTask.post("/task",auth,async (req,res)=>{
     
 })
 
-routerTask.get("/task",auth, async(req,res)=>{
-
+routerTask.get("/tasks",auth, async(req,res)=>{   
     try {
-        const tasks = await Task.find({owner: req.user._id})
-        res.send(tasks)
+        
+        await req.user.populate('tasks') 
+        console.log(tasks)
+        res.send(req.user.tasks)
     } catch(error){
         res.status(500).send()
     }
@@ -52,7 +53,7 @@ routerTask.get("/task/:id", auth, async (req,res) =>{
 routerTask.patch('/task/:id', auth, async(req,res) =>{
 
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['description', 'completed_field']
+    const allowedUpdates = ['description', 'completed']
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if(!isValidOperation){
