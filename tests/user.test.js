@@ -27,3 +27,10 @@ test('Should login existing user', async () =>{
         password: userOne.password
     }).expect(200)
 })
+
+test('Should not login existing user', async () =>{
+    await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: "userOne.password"
+    }).expect(400)
+})
