@@ -20,3 +20,10 @@ test('Should singup a new user', async () =>{
         password: "MyPass777!"
     }).expect(201)
 })
+
+test('Should login existing user', async () =>{
+    await request(app).post('/users/login').send({
+        email: userOne.email,
+        password: userOne.password
+    }).expect(200)
+})
