@@ -3,7 +3,7 @@ const Task = require('../src/models/task')
 const app = require('../src/app')
 
 
-const {userOneId,userOne,setupDatabase} = require('./fixtures/db')
+const {userOneId,userOne,setupDatabase, userTwo, userTwoId, taskOne} = require('./fixtures/db')
 beforeEach(setupDatabase)
 
 test('Should create task for user', async ()=>{
@@ -19,3 +19,21 @@ test('Should create task for user', async ()=>{
     expect(task.completed).toEqual(false)
 })
 
+test('Should get all tasks for user one', async ()=>{
+    const response = await request(app)
+        .get('/tasks')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send()
+        .expect(200)
+    expect(response.body.length).toEqual(2)
+})
+
+test('Testing delete task security', async ()=>{
+    const response = await request(app)
+        .delete(`/task/${taskOne._id}`)
+        .set('Authorization', `Bearer ${userTwo.tokens[0].token}`)
+        .send()
+        .expect(404)
+    const taks = Task.findById(taskOne._id)
+    expect(taks).not.toBeNull()
+})
