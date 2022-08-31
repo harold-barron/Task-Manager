@@ -64,3 +64,10 @@ test('Should delete account for user', async ()=>{
         .send()
         .expect(200)
 })
+
+test('Should not delete account for user', async ()=>{
+    await request(app)
+        .delete('/users/me')
+        .send()
+        .expect(401)
+})
