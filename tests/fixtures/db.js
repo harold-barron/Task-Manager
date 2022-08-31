@@ -22,7 +22,7 @@ const userTwo = {
     email: 'Gera@gmail.com',
     password: 'HAsjaohwad',
     tokens: [{
-        token: jwt.sign({_id: userOneId}, process.env.JWT_SECRET)
+        token: jwt.sign({_id: userTwoId}, process.env.JWT_SECRET)
     }]
 }
 const taskOne = {
@@ -57,5 +57,10 @@ const setupDatabase = async () =>{
 module.exports={
     userOne,
     userOneId,
+    userTwo,
+    userTwoId,
+    taskOne,
+    taskTwo,
+    taskThree,
     setupDatabase
 }
