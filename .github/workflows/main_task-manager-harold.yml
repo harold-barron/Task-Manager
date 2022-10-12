@@ -32,6 +32,14 @@ jobs:
         with:
           name: node-app
           path: .
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+         echo "${{ env.action_state }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,6 +47,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      
 
     steps:
       - name: Download artifact from build job
